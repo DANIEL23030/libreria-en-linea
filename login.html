@@ -43,6 +43,7 @@
                   La contraseña debe tener al menos 8 caracteres, incluyendo una letra mayúscula, una minúscula, un número y un carácter especial.
                 </small>
               </div>
+              <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
               <button type="submit" class="btn btn-primary btn-block">Iniciar Sesión</button>
             </form>
           </div>
@@ -59,4 +60,5 @@
   <script src="validations.js"></script>
 </body>
 </html>
+
 
