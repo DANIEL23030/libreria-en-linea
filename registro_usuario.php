@@ -8,7 +8,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $password = password_hash($_POST['password'], PASSWORD_ARGON2ID); // Almacenamiento de contraseñas
 
     // Validar que el usuario no exista
-    $stmt = $conn->prepare("SELECT * FROM usuarios WHERE username = ? OR email = ?");
+    $stmt = $conn->prepare("SELECT * FROM USUARIOS WHERE nombre = ? OR email = ?");
     $stmt->bind_param("ss", $username, $email);
     $stmt->execute();
     $result = $stmt->get_result();
@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "El usuario o el correo electrónico ya están registrados.";
     } else {
         // Insertar nuevo usuario
-        $stmt = $conn->prepare("INSERT INTO usuarios (username, email, password) VALUES (?, ?, ?)");
+        $stmt = $conn->prepare("INSERT INTO USUARIOS (nombre, email, contraseña) VALUES (?, ?, ?)");
         $stmt->bind_param("sss", $username, $email, $password);
         if ($stmt->execute()) {
             echo "Usuario registrado exitosamente.";
